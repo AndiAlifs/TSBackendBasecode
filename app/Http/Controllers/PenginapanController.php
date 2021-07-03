@@ -30,12 +30,19 @@ class PenginapanController extends Controller
         //data
         $data = [];
         foreach ($allPenginapan as $penginapan) {
+            $jumlahKasusTerakhir = $penginapan->lokasi->kasus_covid->last();
+            $jumlahKasusKemarin = $penginapan->lokasi->kasus_covid
+                                        ->where('last_update','<',$jumlahKasusTerakhir->last_update)
+                                        ->last()->jumlahKasus;
+            if(!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
+
             $data[] = [
                 'nama' => $penginapan->nama_penginapan,
                 'jenis' => $penginapan->jenis_penginapan,
                 'lokasi' => $penginapan->lokasi->lokasi,
-                'jumlah_kasus' => $penginapan->lokasi->kasus_covid->last()->jumlahKasus,
-                'last_update' => $penginapan->lokasi->kasus_covid->last()->last_update,
+                'jumlah_kasus' => $jumlahKasusTerakhir->jumlahKasus,
+                'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
+                'last_update' => $jumlahKasusTerakhir->last_update,
                 'deskripsi' => $penginapan->deskripsi_penginapan
             ];
         }
@@ -43,6 +50,7 @@ class PenginapanController extends Controller
         $messages = "Success";
         $responseData = [
             'messages' => $messages,
+            'jumlah_data' => count($data),
             'data' => $data
         ];
 
