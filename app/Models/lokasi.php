@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class lokasi extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
 }
