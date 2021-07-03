@@ -18,7 +18,7 @@ class CreatePenginapansTable extends Migration
             $table->string('jenis_penginapan');
             $table->string('nama_penginapan');
             $table->integer('id_lokasi');
-            $table->string('deskripsi_penginapan');
+            $table->longText('deskripsi_penginapan');
         });
     }
 
