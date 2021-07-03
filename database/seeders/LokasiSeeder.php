@@ -18,5 +18,29 @@ class LokasiSeeder extends Seeder
         $newLokasi = new lokasi();
         $newLokasi->lokasi = 'Tanah Abang';
         $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Rawa Aopa';
+        $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Cibubur';
+        $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Cihampelas';
+        $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Grogol';
+        $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Cilandak';
+        $newLokasi->save();
+
+        $newLokasi = new lokasi();
+        $newLokasi->lokasi = 'Kebon Jeruk';
+        $newLokasi->save();
     }
 }
