@@ -21,4 +21,14 @@ class lokasi extends Model
     {
         return $this->hasMany(Penginapan::class, 'id_lokasi', 'id_lokasi');
     }
+
+    /**
+     * Get all of the kasus_covid for the lokasi
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kasus_covid(): HasMany
+    {
+        return $this->hasMany(kasus_covid::class, 'id_lokasi', 'id_lokasi');
+    }
 }

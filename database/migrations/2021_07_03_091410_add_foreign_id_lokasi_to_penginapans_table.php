@@ -27,7 +27,7 @@ class AddForeignIdLokasiToPenginapansTable extends Migration
     public function down()
     {
         Schema::table('penginapans', function (Blueprint $table) {
-            $table->dropForeign('id_lokasi');
+            $table->dropForeign(['id_lokasi']);
         });
     }
 }
