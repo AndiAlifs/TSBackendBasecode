@@ -17,7 +17,7 @@ class CreatePenginapansTable extends Migration
             $table->id('id_penginapan');
             $table->string('jenis_penginapan');
             $table->string('nama_penginapan');
-            $table->integer('id_lokasi');
+            $table->unsignedBigInteger('id_lokasi');
             $table->longText('deskripsi_penginapan');
         });
     }

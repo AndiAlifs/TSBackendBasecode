@@ -14,7 +14,7 @@ class CreateKasusCovidsTable extends Migration
     public function up()
     {
         Schema::create('kasus_covids', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_kasus');
             $table->timestamps();
         });
     }

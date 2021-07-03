@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLokasisTable extends Migration
+class AddForeignIdLokasiToPenginapansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateLokasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('lokasis', function (Blueprint $table) {
-            $table->id('id_lokasi');
-            $table->timestamps();
+        Schema::table('penginapans', function (Blueprint $table) {
+            $table->foreign('id_lokasi')->references('id_lokasi')->on('lokasis')->onDelete('cascade');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateLokasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lokasis');
+        Schema::table('penginapans', function (Blueprint $table) {
+            $table->dropForeign('id_lokasi');
+        });
     }
 }
