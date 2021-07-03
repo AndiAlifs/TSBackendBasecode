@@ -15,7 +15,7 @@ class CreateReviewKesehatansTable extends Migration
     {
         Schema::create('review_kesehatans', function (Blueprint $table) {
             $table->id('id_reviewKesehatan');
-            $table->bigInteger('id_penginapan');
+            $table->unsignedBigInteger('id_penginapan');
             $table->longText('review');
             $table->foreign('id_penginapan')->references('id_penginapan')->on('penginapans')->onDelete('cascade');
         });
