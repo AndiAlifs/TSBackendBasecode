@@ -14,8 +14,10 @@ class CreateReviewFasilitasTable extends Migration
     public function up()
     {
         Schema::create('review_fasilitas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_reviewFasilitas');
+            $table->integer('id_penginapan');
+            $table->longText('review');
+            $table->foreign('id_penginapan')->references('id_penginapan')->on('penginapans')->onDelete('cascade');
         });
     }
 
