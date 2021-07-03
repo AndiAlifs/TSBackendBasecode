@@ -14,8 +14,8 @@ class CreateFasilitasTable extends Migration
     public function up()
     {
         Schema::create('fasilitas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_fasilitas');
+            $table->string('nama_fasilitas');
         });
     }
 
