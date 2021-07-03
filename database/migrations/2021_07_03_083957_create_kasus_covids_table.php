@@ -18,6 +18,7 @@ class CreateKasusCovidsTable extends Migration
             $table->id('id_kasus');
             $table->BigInteger('jumlahKasus');
             $table->unsignedBigInteger('id_lokasi');
+            $table->date('last_update');
             $table->foreign('id_lokasi')->references('id_lokasi')->on('lokasis');
         });
     }
