@@ -14,8 +14,10 @@ class CreateKamarsTable extends Migration
     public function up()
     {
         Schema::create('kamars', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_kamar');
+            $table->string('jenis_kamar');
+            $table->bigInteger('Harga');
+            $table->string('fasilitas_kamar');
         });
     }
 
