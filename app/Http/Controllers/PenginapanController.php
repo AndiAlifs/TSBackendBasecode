@@ -16,6 +16,17 @@ class PenginapanController extends Controller
     {   
         $allPenginapan = Penginapan::get();
 
+        // filtering jenis penginapan
+        if(isset($_GET['jenis'])){
+            $allPenginapanOri = $allPenginapan;
+            $allPenginapan = [];
+            foreach ($allPenginapanOri as $penginapan) {
+                if(strtolower($penginapan->jenis_penginapan) == strtolower($_GET['jenis'])){
+                    $allPenginapan[] = $penginapan;
+                }
+            }
+        }
+
         // filtering covid
         if(isset($_GET['undercovid'])){
             $allPenginapanOri = $allPenginapan;
