@@ -1,5 +1,6 @@
 <?php
 
+use Brick\Math\BigInteger;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,9 @@ class CreateKasusCovidsTable extends Migration
     {
         Schema::create('kasus_covids', function (Blueprint $table) {
             $table->id('id_kasus');
-            $table->timestamps();
+            $table->BigInteger('jumlahKasus');
+            $table->unsignedBigInteger('id_lokasi');
+            $table->foreign('id_lokasi')->references('id_lokasi')->on('lokasis');
         });
     }
 

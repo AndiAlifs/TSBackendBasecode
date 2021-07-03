@@ -15,7 +15,8 @@ class CreateFasilitasKesehatansTable extends Migration
     {
         Schema::create('fasilitas_kesehatans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nama_fasilitas');
+            $table->mediumText('deskripsi')->nullable();
         });
     }
 

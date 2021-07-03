@@ -15,7 +15,7 @@ class CreateLokasisTable extends Migration
     {
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id('id_lokasi');
-            $table->timestamps();
+            $table->string('lokasi');
         });
     }
 
