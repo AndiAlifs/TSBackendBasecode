@@ -14,8 +14,11 @@ class CreatePenginapansTable extends Migration
     public function up()
     {
         Schema::create('penginapans', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_penginapan');
+            $table->string('jenis_penginapan');
+            $table->string('nama_penginapan');
+            $table->integer('id_lokasi');
+            $table->string('deskripsi_penginapan');
         });
     }
 
