@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Penginapan extends Model
 {
@@ -41,5 +42,15 @@ class Penginapan extends Model
     public function fasilitas(): BelongsToMany
     {
         return $this->belongsToMany(Fasilitas::class, 'penginapan_fasilitas', 'id_penginapan', 'id_fasilitas');
+    }
+
+    /**
+     * Get all of the review for the Penginapan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function review(): HasMany
+    {
+        return $this->hasMany(Review_fasilitas::class, 'id_penginapan', 'id_penginapan');
     }
 }

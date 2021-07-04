@@ -103,6 +103,8 @@ class PenginapanController extends Controller
 
         $fasilitas = array_column($penginapan->fasilitas()->get()->toArray(),'nama_fasilitas');
 
+        $review = array_column($penginapan->review()->get()->toArray(),'review');
+
         $data = [
             'nama' => $penginapan->nama_penginapan,
             'jenis' => $penginapan->jenis_penginapan,
@@ -114,6 +116,7 @@ class PenginapanController extends Controller
             'rating' => $penginapan->rating,
             'photo' => $photos,
             'fasilitas' => $fasilitas,
+            'review' => $review
         ];
 
         $responseData = [

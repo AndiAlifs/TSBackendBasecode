@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KasusCovidSeeder::class);
         $this->call(PhotoSeeder::class);
         $this->call(FasilitasSeeder::class);
+        $this->call(ReviewFasilitasSeeder::class);
 
     }
 }
