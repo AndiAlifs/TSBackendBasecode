@@ -13,26 +13,26 @@ class PenginapanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $allPenginapan = Penginapan::get();
 
         // filtering jenis penginapan
-        if(isset($_GET['jenis'])){
+        if (isset($_GET['jenis'])) {
             $allPenginapanOri = $allPenginapan;
             $allPenginapan = [];
             foreach ($allPenginapanOri as $penginapan) {
-                if(strtolower($penginapan->jenis_penginapan) == strtolower($_GET['jenis'])){
+                if (strtolower($penginapan->jenis_penginapan) == strtolower($_GET['jenis'])) {
                     $allPenginapan[] = $penginapan;
                 }
             }
         }
 
         // filtering covid
-        if(isset($_GET['undercovid'])){
+        if (isset($_GET['undercovid'])) {
             $allPenginapanOri = $allPenginapan;
             $allPenginapan = [];
             foreach ($allPenginapanOri as $penginapan) {
-                if($penginapan->lokasi->kasus_covid->last()->jumlahKasus <= $_GET['undercovid']){
+                if ($penginapan->lokasi->kasus_covid->last()->jumlahKasus <= $_GET['undercovid']) {
                     $allPenginapan[] = $penginapan;
                 }
             }
@@ -43,9 +43,9 @@ class PenginapanController extends Controller
         foreach ($allPenginapan as $penginapan) {
             $jumlahKasusTerakhir = $penginapan->lokasi->kasus_covid->last();
             $jumlahKasusKemarin = $penginapan->lokasi->kasus_covid
-                                        ->where('last_update','<',$jumlahKasusTerakhir->last_update)
-                                        ->last()->jumlahKasus;
-            if(!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
+                ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
+                ->last()->jumlahKasus;
+            if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
 
             $data[] = [
                 'nama' => $penginapan->nama_penginapan,
@@ -58,14 +58,42 @@ class PenginapanController extends Controller
             ];
         }
 
-        $messages = "Success";
         $responseData = [
-            'messages' => $messages,
+            'messages' => "Success",
             'jumlah_data' => count($data),
             'data' => $data
         ];
 
-        return response()->json($responseData,200);
+        return response()->json($responseData, 200);
+    }
+
+
+    public function detail($id)
+    {
+        $penginapan = Penginapan::find($id);
+
+        $jumlahKasusTerakhir = $penginapan->lokasi->kasus_covid->last();
+        $jumlahKasusKemarin = $penginapan->lokasi->kasus_covid
+            ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
+            ->last()->jumlahKasus;
+        if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
+
+        $data = [
+            'nama' => $penginapan->nama_penginapan,
+            'jenis' => $penginapan->jenis_penginapan,
+            'lokasi' => $penginapan->lokasi->lokasi,
+            'jumlah_kasus' => $jumlahKasusTerakhir->jumlahKasus,
+            'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
+            'last_update' => $jumlahKasusTerakhir->last_update,
+            'deskripsi' => $penginapan->deskripsi_penginapan
+        ];
+
+        $responseData = [
+            'messages' => "Success",
+            'data' => $data
+        ];
+
+        return response()->json($responseData, 200);
     }
 
     /**
