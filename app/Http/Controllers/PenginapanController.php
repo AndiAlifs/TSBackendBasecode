@@ -86,6 +86,14 @@ class PenginapanController extends Controller
             ->last()->jumlahKasus;
         if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
 
+        $photos = array_column($penginapan->photos()->get()->toArray(),'photo');
+
+        $photos = array_map(function($e){
+            return url($e);
+        },$photos);
+
+        $fasilitas = array_column($penginapan->fasilitas()->get()->toArray(),'nama_fasilitas');
+
         $data = [
             'nama' => $penginapan->nama_penginapan,
             'jenis' => $penginapan->jenis_penginapan,
@@ -94,7 +102,8 @@ class PenginapanController extends Controller
             'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
             'last_update' => $jumlahKasusTerakhir->last_update,
             'deskripsi' => $penginapan->deskripsi_penginapan,
-            'photo' => $penginapan->photos()->get(),
+            'photo' => $photos,
+            'fasilitas' => $fasilitas,
         ];
 
         $responseData = [
