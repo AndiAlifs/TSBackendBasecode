@@ -58,6 +58,7 @@ class PenginapanController extends Controller
                 'perubahan_kasus' => $jumlahKasusTerakhir->jumlahKasus-$jumlahKasusKemarin,
                 'last_update' => $jumlahKasusTerakhir->last_update,
                 'deskripsi' => $penginapan->deskripsi_penginapan,
+                'rating' => $penginapan->rating,
                 'cover_photo' => url($penginapan->photos()->first()->photo),
             ];
         }
@@ -110,6 +111,7 @@ class PenginapanController extends Controller
             'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
             'last_update' => $jumlahKasusTerakhir->last_update,
             'deskripsi' => $penginapan->deskripsi_penginapan,
+            'rating' => $penginapan->rating,
             'photo' => $photos,
             'fasilitas' => $fasilitas,
         ];
