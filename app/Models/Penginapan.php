@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Penginapan extends Model
 {
@@ -20,5 +21,15 @@ class Penginapan extends Model
     public function lokasi(): BelongsTo
     {
         return $this->belongsTo(lokasi::class, 'id_lokasi', 'id_lokasi');
+    }
+
+    /**
+     * The photos that belong to the Penginapan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function photos(): BelongsToMany
+    {
+        return $this->belongsToMany(Photo::class, 'penginapan_photos', 'id_penginapan', 'id_photos');
     }
 }

@@ -38,6 +38,7 @@ class PenginapanController extends Controller
             }
         }
 
+
         //data
         $data = [];
         foreach ($allPenginapan as $penginapan) {
@@ -54,8 +55,15 @@ class PenginapanController extends Controller
                 'jumlah_kasus' => $jumlahKasusTerakhir->jumlahKasus,
                 'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
                 'last_update' => $jumlahKasusTerakhir->last_update,
-                'deskripsi' => $penginapan->deskripsi_penginapan
+                'deskripsi' => $penginapan->deskripsi_penginapan,
+                'cover_photo' => url($penginapan->photos()->first()->photo),
             ];
+        }
+
+        // sort kasus saat ini
+        if (isset($_GET['sortByCovid'])) {
+            $kasus_covid = array_column($data, 'jumlah_kasus');
+            array_multisort($kasus_covid, SORT_ASC, $data);
         }
 
         $responseData = [
@@ -74,8 +82,8 @@ class PenginapanController extends Controller
 
         $jumlahKasusTerakhir = $penginapan->lokasi->kasus_covid->last();
         $jumlahKasusKemarin = $penginapan->lokasi->kasus_covid
-                        ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
-                        ->last()->jumlahKasus;
+            ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
+            ->last()->jumlahKasus;
         if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
 
         $data = [
@@ -85,7 +93,8 @@ class PenginapanController extends Controller
             'jumlah_kasus' => $jumlahKasusTerakhir->jumlahKasus,
             'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
             'last_update' => $jumlahKasusTerakhir->last_update,
-            'deskripsi' => $penginapan->deskripsi_penginapan
+            'deskripsi' => $penginapan->deskripsi_penginapan,
+            'photo' => $penginapan->photos()->get(),
         ];
 
         $responseData = [

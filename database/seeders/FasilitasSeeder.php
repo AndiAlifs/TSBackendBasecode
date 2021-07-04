@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Fasilitas;
 use Illuminate\Database\Seeder;
 
 class FasilitasSeeder extends Seeder
@@ -12,7 +13,28 @@ class FasilitasSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        //
+    {   
+        $newFasilitas = new Fasilitas;
+        $newFasilitas->nama_fasilitas = 'Desinfektan Kamar';
+        $newFasilitas->save();
+
+        $newFasilitas = new Fasilitas;
+        $newFasilitas->nama_fasilitas = 'Free Masker Medis';
+        $newFasilitas->save();
+
+        $newFasilitas = new Fasilitas;
+        $newFasilitas->nama_fasilitas = 'Free Hand Sanitizer';
+        $newFasilitas->save();
+
+        $newFasilitas = new Fasilitas;
+        $newFasilitas->nama_fasilitas = 'Kolam Renang';
+        $newFasilitas->save();
+
+        $newFasilitas = new Fasilitas;
+        $newFasilitas->nama_fasilitas = 'Free Wifi';
+        $newFasilitas->save();
+
+        
+
     }
 }

@@ -77,5 +77,6 @@ class PenginapanSeeder extends Seeder
         $newPenginapan->id_lokasi = rand(1,lokasi::count());
         $newPenginapan->deskripsi_penginapan = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis autem natus exercitationem aspernatur aperiam alias voluptates, deleniti necessitatibus mollitia adipisci veniam amet, possimus blanditiis magni nesciunt itaque saepe. Ea, illo';
         $newPenginapan->save();
+
     }
 }
