@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Fasilitas;
+use App\Models\Penginapan;
 use Illuminate\Database\Seeder;
 
 class FasilitasSeeder extends Seeder
@@ -34,7 +35,13 @@ class FasilitasSeeder extends Seeder
         $newFasilitas->nama_fasilitas = 'Free Wifi';
         $newFasilitas->save();
 
-        
+        $allPenginapan = Penginapan::get();
+        foreach ($allPenginapan as $penginapan) {
+            $allfasilitas = fasilitas::get();
+            foreach ($allfasilitas as $fasilitas) {
+                $penginapan->fasilitas()->attach($fasilitas);
+            }
+        }
 
     }
 }

@@ -32,4 +32,14 @@ class Penginapan extends Model
     {
         return $this->belongsToMany(Photo::class, 'penginapan_photos', 'id_penginapan', 'id_photos');
     }
+
+    /**
+     * The fasilitas that belong to the Penginapan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function fasilitas(): BelongsToMany
+    {
+        return $this->belongsToMany(Fasilitas::class, 'penginapan_fasilitas', 'id_penginapan', 'id_fasilitas');
+    }
 }

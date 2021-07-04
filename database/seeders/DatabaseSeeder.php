@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PenginapanSeeder::class);
         $this->call(KasusCovidSeeder::class);
         $this->call(PhotoSeeder::class);
+        $this->call(FasilitasSeeder::class);
+
     }
 }
