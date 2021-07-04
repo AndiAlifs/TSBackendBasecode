@@ -49,11 +49,13 @@ class PenginapanController extends Controller
             if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
 
             $data[] = [
+                'id' => $penginapan->id_penginapan,
                 'nama' => $penginapan->nama_penginapan,
                 'jenis' => $penginapan->jenis_penginapan,
                 'lokasi' => $penginapan->lokasi->lokasi,
                 'jumlah_kasus' => $jumlahKasusTerakhir->jumlahKasus,
                 'jumlah_kasus_sebelumnya' => $jumlahKasusKemarin,
+                'perubahan_kasus' => $jumlahKasusTerakhir->jumlahKasus-$jumlahKasusKemarin,
                 'last_update' => $jumlahKasusTerakhir->last_update,
                 'deskripsi' => $penginapan->deskripsi_penginapan,
                 'cover_photo' => url($penginapan->photos()->first()->photo),
@@ -63,6 +65,12 @@ class PenginapanController extends Controller
         // sort kasus saat ini
         if (isset($_GET['sortByCovid'])) {
             $kasus_covid = array_column($data, 'jumlah_kasus');
+            array_multisort($kasus_covid, SORT_ASC, $data);
+        }
+
+        // sort penurunan kasus saat ini
+        if (isset($_GET['sortByChangeCovid'])) {
+            $kasus_covid = array_column($data, 'perubahan_kasus');
             array_multisort($kasus_covid, SORT_ASC, $data);
         }
 
