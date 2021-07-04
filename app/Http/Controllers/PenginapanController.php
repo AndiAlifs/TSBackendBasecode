@@ -74,8 +74,8 @@ class PenginapanController extends Controller
 
         $jumlahKasusTerakhir = $penginapan->lokasi->kasus_covid->last();
         $jumlahKasusKemarin = $penginapan->lokasi->kasus_covid
-            ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
-            ->last()->jumlahKasus;
+                        ->where('last_update', '<', $jumlahKasusTerakhir->last_update)
+                        ->last()->jumlahKasus;
         if (!isset($jumlahKasusKemarin)) $jumlahKasusKemarin = 0;
 
         $data = [
