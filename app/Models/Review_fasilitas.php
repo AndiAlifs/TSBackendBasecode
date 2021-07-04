@@ -10,7 +10,7 @@ class Review_fasilitas extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primarykey = 'id_reviewFasilitas';
+    protected $primaryKey = 'id_reviewFasilitas';
 
     /**
      * Get the penginapan that owns the Review_fasilitas
