@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'adlap',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
