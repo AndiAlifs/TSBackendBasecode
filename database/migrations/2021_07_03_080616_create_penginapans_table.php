@@ -21,6 +21,7 @@ class CreatePenginapansTable extends Migration
             $table->unsignedBigInteger('id_lokasi');
             $table->longText('deskripsi_penginapan');
             $table->double('rating');
+            $table->bigInteger('harga');
         });
     }
 
