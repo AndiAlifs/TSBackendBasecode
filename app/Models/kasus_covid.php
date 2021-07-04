@@ -9,5 +9,6 @@ class kasus_covid extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'id_kasus';
 
 }
